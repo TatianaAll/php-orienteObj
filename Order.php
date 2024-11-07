@@ -10,6 +10,7 @@ class Order
 // adding the magic method __construct to get the custumerName during the creatin of the new instance of the Order class
     public function __construct($customerName){
         $this->customerName = $customerName;
+        $this->id = uniqid();
     }
 
     public function addProduct()
