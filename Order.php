@@ -41,7 +41,7 @@ class Order
             $this->$shippingAdress = $shippingAdress;
             $this->status = "shippingAdressSet";
         } else {
-        throw new Exception("Vous n'avez pas d'adresse de livraison ou vous avez déjà payé votre commande");
+            throw new Exception("Vous n'avez pas d'adresse de livraison ou vous avez déjà payé votre commande");
         }
     }
 
