@@ -4,12 +4,14 @@ class Order
 {
     public $id;
     public $customerName;
+    public $customerAddress = "";
     public $status = "cart";
     public $totalPrice;
     public $products = [];
 // adding the magic method __construct to get the custumerName during the creatin of the new instance of the Order class
-    public function __construct($customerName){
+    public function __construct($customerName, $customerAddress){
         $this->customerName = $customerName;
+        $this->customerAddress = $customerAddress;
         $this->id = uniqid();
     }
 
@@ -37,9 +39,19 @@ class Order
             echo ("votre panier est vide");
         }
     }
+
+    public function shippingAdress(){
+        return $this->customerAddress;
+    }
+
+    public function shipOrder(){
+        if ($this->status === "payed" && count($this->products)!==0) {
+            $this->status = "shipped";
+        }
+    }
 }
 // creation of the first instance
-$newOrder1 = new Order("Tatiana");
+$newOrder1 = new Order("Tatiana", "38 avenue de la vieille tour");
 $newOrder1->addProduct();
 $newOrder1->addProduct();
 var_dump($newOrder1); ?>
@@ -53,3 +65,4 @@ $newOrder1->pay();
 var_dump($newOrder1); ?>
     <br>
 <?php
+echo $newOrder1->shippingAdress();
