@@ -64,7 +64,7 @@ class Order
     }
 }
 // creation of the first instance
-$newOrder1 = new Order("Tatiana");
-$newOrder1->addProduct();
-
-var_dump($newOrder1);
+//$newOrder1 = new Order("Tatiana");
+//$newOrder1->addProduct();
+//
+//var_dump($newOrder1);
