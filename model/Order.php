@@ -5,8 +5,8 @@ class Order
     public $id;
     public $customerName;
     public $shippingAddress;
-    public $status;
-    public $totalPrice;
+    private $status;
+    private $totalPrice;
     public $products = [];
 // adding the magic method __construct to get the custumerName during the creatin of the new instance of the Order class
     public function __construct($customerName){
@@ -66,21 +66,5 @@ class Order
 // creation of the first instance
 $newOrder1 = new Order("Tatiana");
 $newOrder1->addProduct();
-$newOrder1->addProduct();
-var_dump($newOrder1); ?>
-<br>
-<?php
-$newOrder1->removeProduct();
-$newOrder1->removeProduct();
-$newOrder1->removeProduct();
-var_dump($newOrder1); ?>
-    <br>
-<?php
-$newOrder1->pay();
-var_dump($newOrder1); ?>
-    <br>
-<?php
-$newOrder1->shipOrder();
-var_dump($newOrder1); ?>
-    <br>
-<?php
+
+var_dump($newOrder1);

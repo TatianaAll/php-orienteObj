@@ -6,7 +6,7 @@ class Product{
     protected $title;
     protected $shippingCost;
 
-    protected function buy()
+    public function buy()
     {
         //buy the product
     }
