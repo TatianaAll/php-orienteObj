@@ -30,7 +30,7 @@ class VendingMachine
                 "quantity" => 5
             ]
         ];
-        $this->cashAmount = 0;
+        $this->cashAmount = 0.00;
     }
 
     public function turnOn()
@@ -42,9 +42,9 @@ class VendingMachine
         }
     }
 
-    public function turnOff()
-    {$closeHour = new DateTime("18:00:00");
-    $now = new DateTime();
+    public function turnOff(){
+        $closeHour = new DateTime("18:00:00");
+        $now = new DateTime();
         if ($now > $closeHour) {
             $this->isOn = false;
         } else {
@@ -78,20 +78,22 @@ class VendingMachine
         }
     }
 
+    private function getRandomSnack(){
+        $randomSnack = rand(0, count($this->snacks)-1);
+        if($this->snacks[$randomSnack]["quantity"] > 0){
+            $this->snacks[$randomSnack]["quantity"] -= 1;
+        } else {
+            $randomSnack = rand(0, count($this->snacks) - 1);
+        }
+    }
+
     public function shootWithFoot(){
         if ($this->isOn) {
             if ($this->cashAmount > 0) {
-                $this->cashAmount -= ((float)rand(1, $this->cashAmount));
+                $randomAmount = ((float)(rand(1, $this->cashAmount)*100)/100);
+                $this->cashAmount -= $randomAmount;
             }
-            $randomSnack = rand(0, count($this->snacks)-1);
-            if($this->snacks[$randomSnack]["quantity"] > 0){
-                $this->snacks[$randomSnack]["quantity"] -= 1;
-            } else {
-                $randomSnack = rand(0, count($this->snacks)-1);
-                if ($this->snacks[$randomSnack]["quantity"] > 0) {
-                    $this->snacks[$randomSnack]["quantity"] -= 1;
-                }
-            }
+            $this->getRandomSnack();
         } else {
             throw new Exception("La machine est éteinte");
         }
