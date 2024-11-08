@@ -9,18 +9,22 @@
 </head>
 <body>
 <h1>Bienvenue Sur votre site de Pringles</h1>
-    <form method="POST" action="">
-        <label for='customerName'>Entrez votre nom pour commencer une commande</label>
-        <input type='text' name='customerName' id='customerName' placeholder="Votre nom ici"/>
+<form method="POST" action="">
+    <label for='customerName'>Entrez votre nom pour commencer une commande</label>
+    <input type='text' name='customerName' id='customerName' placeholder="Votre nom ici"/>
 
-        <button type="submit">Démarrer votre commande</button>
-    </form>
+    <button type="submit">Démarrer votre commande</button>
+</form>
 
 <?php
-if ($customerName){ ?>
-<p>Votre commande est bien prise en compte </p>
+if (isset($_POST['customerName'])) {
+    if ($customerName) { ?>
+        <p>Votre commande est bien prise en compte, merci <?php echo $customerName?> </p>
 
-<?php }
+    <?php } else { ?>
+        <p> Merci de renseigner votre nom </p>
+    <?php }
+}
 ?>
 
 </body>
