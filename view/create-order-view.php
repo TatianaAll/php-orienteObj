@@ -25,6 +25,10 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") { ?>
 
         <p> <?php echo $message ?> </p>
 
+    <p>
+        Commande numéro : <?php echo $order->getId() ?> au nom de <?php echo $order->getCustomerName() ?>
+    </p>
+
     <?php }  ?>
 
 </body>

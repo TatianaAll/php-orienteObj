@@ -16,6 +16,9 @@ ul{
     align-items: center;
     list-style: none;
 }
+li{
+    margin-right: 2rem;
+}
 
 /*setup the main part*/
 main{

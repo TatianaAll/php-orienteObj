@@ -2,8 +2,10 @@
 require_once('../model/Order.php');
 require_once('../model/OrderRepository.php');
 
-class OrderController {
-    public function createOrder() {
+class OrderController
+{
+    public function createOrder()
+    {
         $message = null;
 
         if ($_SERVER["REQUEST_METHOD"] === "POST") {
@@ -28,7 +30,8 @@ class OrderController {
         require_once('../view/create-order-view.php');
     }
 
-    public function addProduct(){
+    public function addProduct()
+    {
 
         $message = null;
         // 1 - je récupère mon order stockée en session avec findOrder depuis le OrderRepo
@@ -46,5 +49,25 @@ class OrderController {
         }
 
         require_once('../view/add-product-view.php');
+    }
+
+    public function removeProduct()
+    {
+        $message = null;
+//        1- je récupère mon order stockée en session avec findOrder depuis le OrderRepo
+        $orderRepository = new OrderRepository();
+        $order = $orderRepository->findOrder();
+
+        try {
+            // 2- je retire un produit à ma commande
+            $order->removeProduct();
+
+            // 3 - je sauve la nouvelle order en session :
+            $orderRepository->persistOrder($order);
+            $message = "produit supprimé à la commande";
+        } catch (Exception $exception) {
+            $message = $exception->getMessage();
+        }
+        require_once('../view/remove-product-view.php');
     }
 }

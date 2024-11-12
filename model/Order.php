@@ -7,10 +7,20 @@ class Order
     public function getId(){
         return $this->id;
     }
-    public $customerName;
+    private $customerName;
+    public function getCustomerName(){
+        return $this->customerName;
+    }
+    private $creationDate;
+    public function getCreationDate(){
+        return $this->creationDate;
+    }
     public $shippingAddress;
     private $status;
     private $totalPrice;
+    public function getTotalPrice(){
+        return $this->totalPrice;
+    }
     public $products = [];
 
 // adding the magic method __construct to get the custumerName during the creatin of the new instance of the Order class
@@ -23,6 +33,7 @@ class Order
         $this->status = "cart";
         $this->totalPrice = 0;
         $this->id = uniqid();
+        $this->creationDate = new DateTime();
     }
 
     public function addProduct()
@@ -73,6 +84,7 @@ class Order
             throw new Exception("Vous n'avez pas payé votre commande");
         }
     }
+
 }
 
 // creation of the first instance
