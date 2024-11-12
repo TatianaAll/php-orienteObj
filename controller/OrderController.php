@@ -1,5 +1,6 @@
 <?php
 require_once('../model/Order.php');
+require_once('../model/OrderRepository.php');
 
 class OrderController {
     public function createOrder() {
@@ -9,8 +10,16 @@ class OrderController {
 
             if (key_exists('customerName', $_POST)) {
                 try {
+                    // 1- je créée ma commande
                     $order = new Order($_POST["customerName"]);
+
+                    // 2- je stocke ma commande (ici dans la session, mais pourrait être en BDD) en utilisant la classe OrderRepository
+                    // pour ça je l'instancie et j'utilise la méthode persist
+                    $orderRepository = new OrderRepository();
+                    $orderRepository->persistOrder($order);
+
                     $message = "Votre commande est bien prise en compte, merci";
+
                 } catch (Exception $exception) {
                     $message = $exception->getMessage();
                 }
@@ -20,7 +29,6 @@ class OrderController {
     }
 
     public function addProduct(){
-        // récupère la commande en BDD
 
         $message = null;
 
