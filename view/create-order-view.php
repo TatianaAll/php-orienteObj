@@ -4,6 +4,13 @@ require_once ("partials/_header.php")
 
 <body>
 <h1>Bienvenue Sur votre site de Pringles</h1>
+
+<?php if ($message)  { ?>
+
+    <h2><?php echo $message; ?></h2>
+
+<?php } ?>
+
 <form method="POST" action="">
     <label for='customerName'>Entrez votre nom pour commencer une commande</label>
     <input type='text' name='customerName' id='customerName' placeholder="Votre nom ici"/>

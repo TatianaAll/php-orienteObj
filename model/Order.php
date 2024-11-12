@@ -70,6 +70,7 @@ class Order
         }
     }
 }
+
 // creation of the first instance
 //$newOrder1 = new Order("Tatiana");
 //$newOrder1->addProduct();

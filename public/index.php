@@ -19,9 +19,13 @@ $endUri = trim($endUri, '/');
 if ($endUri === "") {
     $indexController = new IndexController();
     $indexController->index();
+} else if ($endUri === "add-product"){
+    $indexController = new IndexController();
+    $indexController->addProduct();
 } else {
     $errorController = new ErrorController();
     $errorController->notFound();
 }
+
 
 require_once ("../view/partials/_footer.php");

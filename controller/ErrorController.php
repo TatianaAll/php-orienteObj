@@ -2,6 +2,6 @@
 
 class ErrorController {
     public function notFound(){
-        require_once ("../view/error404Page-view.php");
+        require_once("../view/error-404-view.php");
     }
 }

@@ -16,6 +16,22 @@ class IndexController {
                 }
             }
         }
-        require_once('../view/index-view.php');
+        require_once('../view/create-order-view.php');
+    }
+
+    public function addProduct(){
+        // récupère la commande en BDD
+
+        $message = null;
+
+        try {
+            $order->addProduct();
+            $message = "produit ajouté à la commande";
+
+        } catch (Exception $exception) {
+            $message = $exception->getMessage();
+        }
+
+        require_once('../view/add-product-view.php');
     }
 }
