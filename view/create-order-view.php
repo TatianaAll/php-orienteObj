@@ -1,5 +1,6 @@
 <?php
-require_once ("partials/_header.php")
+require_once ("partials/_header.php");
+require_once ("../config/config.php");
 ?>
 
 <body>

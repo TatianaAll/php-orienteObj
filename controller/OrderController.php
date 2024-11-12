@@ -32,15 +32,15 @@ class OrderController {
 
         $message = null;
         // 1 - je récupère mon order stockée en session avec findOrder depuis le OrderRepo
-        $orderRepository = new $orderRepository();
-        $oder = $orderRepository->findOrder();
-
+        $orderRepository = new OrderRepository();
+        $order = $orderRepository->findOrder();
         try {
+            // 2- j'ajoute un nouveau produit à ma commande
             $order->addProduct();
-            // 2 - je sauve la nouvelle order en session :
+
+            // 3 - je sauve la nouvelle order en session :
             $orderRepository->persistOrder($order);
             $message = "produit ajouté à la commande";
-
         } catch (Exception $exception) {
             $message = $exception->getMessage();
         }

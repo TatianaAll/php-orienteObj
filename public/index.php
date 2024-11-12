@@ -1,8 +1,8 @@
 <?php
-
+require_once ("../config/config.php");
 require_once('../controller/OrderController.php');
 require_once('../controller/ErrorController.php');
-require_once ("../view/partials/_header.php");
+//require_once ("../view/partials/_header.php");
 
 // récupère l'url actuelle
 $requestUri = $_SERVER['REQUEST_URI'];
@@ -16,13 +16,13 @@ $endUri = trim($endUri, '/');
 
 
 // en fonction de la valeur de $endUri on charge le bon contrôleur
-$indexController = new OrderController();
+$createOrder = new OrderController();
 
 if ($endUri === "") {
-    $indexController->createOrder();
+    $createOrder->createOrder();
 
 } else if ($endUri === "add-product"){
-    $indexController->addProduct();
+    $createOrder->addProduct();
 
 } else {
     $errorController = new ErrorController();
@@ -30,4 +30,4 @@ if ($endUri === "") {
 }
 
 
-require_once ("../view/partials/_footer.php");
+//require_once ("../view/partials/_footer.php");

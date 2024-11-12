@@ -2,7 +2,11 @@
 
 class Order
 {
-    public $id;
+    private $id;
+//    on fait un guetteur
+    public function getId(){
+        return $this->id;
+    }
     public $customerName;
     public $shippingAddress;
     private $status;
@@ -23,7 +27,7 @@ class Order
 
     public function addProduct()
     {
-        if ($this->status === "cart") {
+        if ($this->status = "cart") {
             $this->products[] = "pringles";
             $this->totalPrice += 3;
         } else {
