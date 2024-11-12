@@ -1,8 +1,8 @@
 <?php
 require_once('../model/Order.php');
 
-class IndexController {
-    public function index() {
+class OrderController {
+    public function createOrder() {
         $message = null;
 
         if ($_SERVER["REQUEST_METHOD"] === "POST") {

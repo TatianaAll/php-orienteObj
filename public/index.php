@@ -1,6 +1,6 @@
 <?php
 
-require_once('../controller/IndexController.php');
+require_once('../controller/OrderController.php');
 require_once('../controller/ErrorController.php');
 require_once ("../view/partials/_header.php");
 
@@ -16,12 +16,14 @@ $endUri = trim($endUri, '/');
 
 
 // en fonction de la valeur de $endUri on charge le bon contrôleur
+$indexController = new OrderController();
+
 if ($endUri === "") {
-    $indexController = new IndexController();
-    $indexController->index();
+    $indexController->createOrder();
+
 } else if ($endUri === "add-product"){
-    $indexController = new IndexController();
     $indexController->addProduct();
+
 } else {
     $errorController = new ErrorController();
     $errorController->notFound();
