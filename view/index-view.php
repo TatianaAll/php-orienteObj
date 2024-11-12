@@ -17,15 +17,12 @@
 </form>
 
 <?php
-if (isset($_POST['customerName'])) {
-    if ($customerName) { ?>
-        <p>Votre commande est bien prise en compte, merci <?php echo $customerName?> </p>
 
-    <?php } else { ?>
-        <p> Merci de renseigner votre nom </p>
-    <?php }
-}
-?>
+if ($_SERVER["REQUEST_METHOD"] === "POST") { ?>
+
+        <p> <?php echo $message ?> </p>
+
+    <?php }  ?>
 
 </body>
 </html>
