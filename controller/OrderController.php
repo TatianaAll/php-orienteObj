@@ -10,10 +10,10 @@ class OrderController {
 
             if (key_exists('customerName', $_POST)) {
                 try {
-                    // 1- je créée ma commande
+                    // 1- je créée ma commande avec la class Order
                     $order = new Order($_POST["customerName"]);
 
-                    // 2- je stocke ma commande (ici dans la session, mais pourrait être en BDD) en utilisant la classe OrderRepository
+                    // 2- je stocke ma commande (ici dans la session) en utilisant la class OrderRepository
                     // pour ça je l'instancie et j'utilise la méthode persist
                     $orderRepository = new OrderRepository();
                     $orderRepository->persistOrder($order);
@@ -31,9 +31,14 @@ class OrderController {
     public function addProduct(){
 
         $message = null;
+        // 1 - je récupère mon order stockée en session avec findOrder depuis le OrderRepo
+        $orderRepository = new $orderRepository();
+        $oder = $orderRepository->findOrder();
 
         try {
             $order->addProduct();
+            // 2 - je sauve la nouvelle order en session :
+            $orderRepository->persistOrder($order);
             $message = "produit ajouté à la commande";
 
         } catch (Exception $exception) {
