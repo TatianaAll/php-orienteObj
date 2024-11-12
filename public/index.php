@@ -17,4 +17,6 @@ $endUri = trim($endUri, '/');
 if ($endUri === "") {
     $indexController = new IndexController();
     $indexController->index();
+} else {
+    echo "<p>erreur 404</p>";
 }
