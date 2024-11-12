@@ -70,4 +70,30 @@ class OrderController
         }
         require_once('../view/remove-product-view.php');
     }
+
+    public function setShippingAdress()
+    {
+        $message = null;
+//        1- je récupère mon order stockée en session avec findOrder depuis le OrderRepo
+        $orderRepository = new OrderRepository();
+        $order = $orderRepository->findOrder();
+
+        if ($_SERVER["REQUEST_METHOD"] === "POST") {
+
+            if (key_exists('shippingAdress', $_POST)) {
+                try {
+                    $order->setShippingAdress(($_POST["shippingAdress"]));
+
+                    $orderRepository = new OrderRepository();
+                    $orderRepository->persistOrder($order);
+
+                    $message = "Adresse de livraison bien enregistrée";
+
+                } catch (Exception $exception) {
+                    $message = $exception->getMessage();
+                }
+            }
+        }
+        require_once('../view/set-shipping-adress-view.php');
+    }
 }

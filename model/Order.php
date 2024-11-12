@@ -3,24 +3,36 @@
 class Order
 {
     private $id;
+
 //    on fait un guetteur
-    public function getId(){
+    public function getId()
+    {
         return $this->id;
     }
+
     private $customerName;
-    public function getCustomerName(){
+
+    public function getCustomerName()
+    {
         return $this->customerName;
     }
+
     private $creationDate;
-    public function getCreationDate(){
+
+    public function getCreationDate()
+    {
         return $this->creationDate;
     }
+
     public $shippingAddress;
     private $status;
     private $totalPrice;
-    public function getTotalPrice(){
+
+    public function getTotalPrice()
+    {
         return $this->totalPrice;
     }
+
     public $products = [];
 
 // adding the magic method __construct to get the custumerName during the creatin of the new instance of the Order class
@@ -59,11 +71,11 @@ class Order
 
     public function setShippingAdress($shippingAdress)
     {
-        if ($this->status === "cart") {
+        if ($this->status === "cart" && mb_strlen($shippingAdress) > 5) {
             $this->$shippingAdress = $shippingAdress;
             $this->status = "shippingAdressSet";
         } else {
-            throw new Exception("Vous n'avez pas d'adresse de livraison ou vous avez déjà payé votre commande");
+            throw new Exception("Votre adresse de livraison est trop courte (ou invalide) ou vous avez déjà payé votre commande");
         }
     }
 

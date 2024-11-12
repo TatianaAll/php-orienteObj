@@ -24,8 +24,10 @@ if ($endUri === "") {
 } else if ($endUri === "add-product"){
     $createOrder->addProduct();
 
-} else if ($endUri === "remove-product"){
+} else if ($endUri === "remove-product") {
     $createOrder->removeProduct();
+} else if ($endUri === "shipping-adress"){
+    $createOrder->setShippingAdress();
 } else {
     $errorController = new ErrorController();
     $errorController->notFound();
