@@ -77,6 +77,7 @@ class OrderController
 //        1- je récupère mon order stockée en session avec findOrder depuis le OrderRepo
         $orderRepository = new OrderRepository();
         $order = $orderRepository->findOrder();
+
 //        2- je vérifie que ma requete post a bien été faite
         if ($_SERVER["REQUEST_METHOD"] === "POST") {
 

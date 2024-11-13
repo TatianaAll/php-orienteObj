@@ -9,7 +9,7 @@ require_once ("../config/config.php");
         <?php echo $message; ?>
     </p>
     <p>
-        Commande numéro : <?php echo $order->getId() ?> au nom de <?php echo $order->getCustomerName() ?> créée le <?php echo $order->getCreationDate() ?>.
+        Commande numéro : <?php echo $order->getId() ?> au nom de <?php echo $order->getCustomerName() ?> est en statut <?php echo $order->getStatus() ?>.
     </p>
     <p>Total de la commande : <?php echo $order->getTotalPrice(); ?> €</p>
     <p>Résumé de la commande : </p>

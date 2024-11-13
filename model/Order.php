@@ -26,6 +26,9 @@ class Order
 
     public $shippingAddress;
     private $status;
+    public function getStatus(){
+        return $this->status;
+    }
     private $totalPrice;
 
     public function getTotalPrice()

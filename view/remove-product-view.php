@@ -10,8 +10,7 @@ require_once("../config/config.php");
     </p>
     <?php if (count($order->products) > 0) { ?>
         <p>
-            Commande numéro : <?php echo $order->getId() ?> au nom de <?php echo $order->getCustomerName() ?> créée
-            le <?php echo $order->getCreationDate() ?>.
+            Commande numéro : <?php echo $order->getId() ?> au nom de <?php echo $order->getCustomerName() ?>.
         </p>
         <p>Total de la commande : <?php echo $order->getTotalPrice(); ?> €</p>
         <p>Résumé de la commande : </p>
