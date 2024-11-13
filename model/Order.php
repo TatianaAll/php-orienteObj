@@ -94,5 +94,4 @@ class Order
             throw new Exception("Vous n'avez pas payé votre commande");
         }
     }
-
 }
