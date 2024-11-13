@@ -1,45 +1,41 @@
 <?php
+//pour le typage :
+declare(strict_types=1);
 
 class Order
 {
-    private $id;
+    private string $id;
 
 //    on fait un guetteur
-    public function getId()
+    public function getId() : string
     {
         return $this->id;
     }
 
-    private $customerName;
+    private string $customerName;
 
-    public function getCustomerName()
+    public function getCustomerName() : string
     {
         return $this->customerName;
     }
 
-    private $creationDate;
-
-    public function getCreationDate()
+    private ?string $shippingAddress;
+    private string $status;
+    public function getStatus() : string
     {
-        return $this->creationDate;
-    }
-
-    private $shippingAddress;
-    private $status;
-    public function getStatus(){
         return $this->status;
     }
-    private $totalPrice;
+    private float $totalPrice;
 
-    public function getTotalPrice()
+    public function getTotalPrice() : float
     {
         return $this->totalPrice;
     }
 
-    public $products = [];
+    public array $products = [];
 
 // adding the magic method __construct to get the custumerName during the creatin of the new instance of the Order class
-    public function __construct($customerName)
+    public function __construct(string $customerName)
     {
         if (mb_strlen($customerName) < 3) {
             throw new Exception("Le nom de consommateur doit faire plus de 3 caractères");
@@ -48,10 +44,9 @@ class Order
         $this->status = "cart";
         $this->totalPrice = 0;
         $this->id = uniqid();
-        $this->creationDate = new DateTime();
     }
 
-    public function addProduct()
+    public function addProduct() : void
     {
         if ($this->status = "cart") {
             $this->products[] = "pringles";
@@ -62,7 +57,7 @@ class Order
     }
 
 //remove the last item of the array with the native function array_pop()
-    public function removeProduct()
+    public function removeProduct() : void
     {
         if ($this->status === "cart" && count($this->products) !== 0) {
             array_pop($this->products);
@@ -72,7 +67,7 @@ class Order
         }
     }
 
-    public function setShippingAddress($shippingAddress)
+    public function setShippingAddress(string $shippingAddress)
     {
         if ($this->status === "cart" && mb_strlen($shippingAddress) > 5) {
             $this->$shippingAddress = $shippingAddress;
@@ -82,7 +77,7 @@ class Order
         }
     }
 
-    public function pay()
+    public function pay() : void
     {
         if ($this->status === "shippingAddressSet" && count($this->products) !== 0) {
             $this->status = "payed";
@@ -101,9 +96,3 @@ class Order
     }
 
 }
-
-// creation of the first instance
-//$newOrder1 = new Order("Tatiana");
-//$newOrder1->addProduct();
-//
-//var_dump($newOrder1);

@@ -2,7 +2,7 @@
 require_once ("../config/config.php");
 require_once('../controller/OrderController.php');
 require_once('../controller/ErrorController.php');
-//require_once ("../view/partials/_header.php");
+
 
 // récupère l'url actuelle
 $requestUri = $_SERVER['REQUEST_URI'];
