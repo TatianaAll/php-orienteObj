@@ -1,0 +1,38 @@
+{# <?php #}
+{# require_once ("../config/config.php"); #}
+{# require_once ("../view/partials/_header.php"); #}
+{# require_once ("../config/config.php"); #}
+{# ?> #}
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+
+<main>
+    <p>
+        {{ message }}
+    </p>
+    <p>
+        Commande numéro : {{ order.getId() }} au nom de {{ order.getCustomerName() }} est en
+        statut {{ order.getStatus() }}.
+    </p>
+    <p>Total de la commande : {{ order.getTotalPrice() }} €</p>
+    <p>Résumé de la commande : </p>
+    <ul>
+        {% for product in order.products %}
+            <li> {{ product }} </li>
+        {% endfor %}
+    </ul>
+</main>
+</body>
+</html>
+
+{# <?php #}
+{# require_once ("../view/partials/_footer.php") #}
+{# ?> #}

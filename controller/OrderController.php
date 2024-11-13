@@ -34,8 +34,7 @@ class OrderController
         // je créé la config de twig en lui indiquant le chemin pour accéder aux templates
         $loader = new \Twig\Loader\FilesystemLoader('../view');
         // je charge twig avec la configuration
-        // ça me permet d'avoir une variable $twig qui contient une instance
-        // de la classe twig
+        // ça me permet d'avoir une variable $twig qui contient une instance de la classe twig
         // et donc pouvoir utiliser les méthodes public que twig crées
         $twig = new \Twig\Environment($loader);
 
@@ -60,11 +59,22 @@ class OrderController
             // 3 - je sauve la nouvelle order en session :
             $orderRepository->persistOrder($order);
             $message = "produit ajouté à la commande";
+
         } catch (Exception $exception) {
             $message = $exception->getMessage();
         }
+        // je créé la config de twig en lui indiquant le chemin pour accéder aux templates
+        $loader = new \Twig\Loader\FilesystemLoader('../view');
+        // je charge twig avec la configuration
+        // ça me permet d'avoir une variable $twig qui contient une instance de la classe twig
+        // et donc pouvoir utiliser les méthodes public que twig crées
+        $twig = new \Twig\Environment($loader);
 
-        require_once('../view/add-product-view.php');
+        //
+        echo $twig->render('add-product.twig', [
+            'message' => $message,
+            'order' => $order,
+        ]);
     }
 
     public function removeProduct() : void
@@ -84,7 +94,18 @@ class OrderController
         } catch (Exception $exception) {
             $message = $exception->getMessage();
         }
-        require_once('../view/remove-product-view.php');
+        // je créé la config de twig en lui indiquant le chemin pour accéder aux templates
+        $loader = new \Twig\Loader\FilesystemLoader('../view');
+        // je charge twig avec la configuration
+        // ça me permet d'avoir une variable $twig qui contient une instance de la classe twig
+        // et donc pouvoir utiliser les méthodes public que twig crées
+        $twig = new \Twig\Environment($loader);
+
+        //
+        echo $twig->render('remove-product.twig', [
+            'message' => $message,
+            'order' => $order,
+        ]);
     }
 
     public function setShippingAddress() : void
@@ -112,7 +133,18 @@ class OrderController
                 }
             }
         }
-        require_once('../view/set-shipping-address-view.php');
+        // je créé la config de twig en lui indiquant le chemin pour accéder aux templates
+        $loader = new \Twig\Loader\FilesystemLoader('../view');
+        // je charge twig avec la configuration
+        // ça me permet d'avoir une variable $twig qui contient une instance de la classe twig
+        // et donc pouvoir utiliser les méthodes public que twig crées
+        $twig = new \Twig\Environment($loader);
+
+        //
+        echo $twig->render('set-shipping-address.twig', [
+            'message' => $message,
+            'order' => $order,
+        ]);
     }
 
     public function letPay() : void
