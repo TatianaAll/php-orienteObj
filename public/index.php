@@ -27,13 +27,12 @@ if ($endUri === "") {
 } else if ($endUri === "remove-product") {
     $createOrder->removeProduct();
 
-} else if ($endUri === "shipping-adress"){
-    $createOrder->setShippingAdress();
+} else if ($endUri === "shipping-address"){
+    $createOrder->setShippingAddress();
 
+} else if ($endUri === "pay"){
+    $createOrder->letPay();
 } else {
     $errorController = new ErrorController();
     $errorController->notFound();
 }
-
-
-//require_once ("../view/partials/_footer.php");

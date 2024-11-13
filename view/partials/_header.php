@@ -14,7 +14,19 @@
     <nav>
         <ul>
             <li>
-                <a href="../../public/index.php">Accueil</a>
+                <a href="http://localhost/exercice2-orienteObjet/public/">Accueil</a>
+            </li>
+            <li>
+                <a href="http://localhost/exercice2-orienteObjet/public/add-product">Ajouter un produit</a>
+            </li>
+            <li>
+                <a href="http://localhost/exercice2-orienteObjet/public/remove-product">Retirer un produit</a>
+            </li>
+            <li>
+                <a href="http://localhost/exercice2-orienteObjet/public/shipping-address">Mettre une adresse</a>
+            </li>
+            <li>
+                <a href="http://localhost/exercice2-orienteObjet/public/pay">Payer</a>
             </li>
         </ul>
     </nav>

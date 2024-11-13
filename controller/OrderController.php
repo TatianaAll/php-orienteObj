@@ -71,7 +71,7 @@ class OrderController
         require_once('../view/remove-product-view.php');
     }
 
-    public function setShippingAdress()
+    public function setShippingAddress()
     {
         $message = null;
 //        1- je récupère mon order stockée en session avec findOrder depuis le OrderRepo
@@ -81,10 +81,10 @@ class OrderController
 //        2- je vérifie que ma requete post a bien été faite
         if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
-            if (key_exists('shippingAdress', $_POST)) {
+            if (key_exists('shippingAddress', $_POST)) {
                 try {
-                    //je définie ma shipping adress en lui donnant la valeur entré dans le form
-                    $order->setShippingAdress(($_POST["shippingAdress"]));
+                    //je définie ma shipping address en lui donnant la valeur entré dans le form
+                    $order->setShippingAddress(($_POST["shippingAddress"]));
                     // je stocke la nouvelle instance de mon repo
                     $orderRepository = new OrderRepository();
                     $orderRepository->persistOrder($order);
@@ -96,6 +96,33 @@ class OrderController
                 }
             }
         }
-        require_once('../view/set-shipping-adress-view.php');
+        require_once('../view/set-shipping-address-view.php');
+    }
+
+    public function letPay()
+    {
+        $message = null;
+
+        //1- je récupère mon order stockée en session avec findOrder depuis le OrderRepo
+        $orderRepository = new OrderRepository();
+        $order = $orderRepository->findOrder();
+
+        if ($_SERVER["REQUEST_METHOD"] === "POST") {
+
+            try {
+                //je définie ma shipping address en lui donnant la valeur entré dans le form
+                $order->pay();
+                // je stocke la nouvelle instance de mon repo
+                $orderRepository = new OrderRepository();
+                $orderRepository->persistOrder($order);
+
+                $message = "Vous avez bien payé";
+
+            } catch (Exception $exception) {
+                $message = $exception->getMessage();
+            }
+
+        }
+        require_once('../view/pay-view.php');
     }
 }

@@ -24,7 +24,7 @@ class Order
         return $this->creationDate;
     }
 
-    public $shippingAddress;
+    private $shippingAddress;
     private $status;
     public function getStatus(){
         return $this->status;
@@ -72,11 +72,11 @@ class Order
         }
     }
 
-    public function setShippingAdress($shippingAdress)
+    public function setShippingAddress($shippingAddress)
     {
-        if ($this->status === "cart" && mb_strlen($shippingAdress) > 5) {
-            $this->$shippingAdress = $shippingAdress;
-            $this->status = "shippingAdressSet";
+        if ($this->status === "cart" && mb_strlen($shippingAddress) > 5) {
+            $this->$shippingAddress = $shippingAddress;
+            $this->status = "shippingAddressSet";
         } else {
             throw new Exception("Votre adresse de livraison est trop courte (ou invalide) ou vous avez déjà payé votre commande");
         }
@@ -84,7 +84,7 @@ class Order
 
     public function pay()
     {
-        if ($this->status === "shippingAdressSet" && count($this->products) !== 0) {
+        if ($this->status === "shippingAddressSet" && count($this->products) !== 0) {
             $this->status = "payed";
         } else {
             throw new Exception("Impossible de payer, vous n'avez pas mis d'adresse de livraison ou votre panier est vide");
