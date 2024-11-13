@@ -77,13 +77,14 @@ class OrderController
 //        1- je récupère mon order stockée en session avec findOrder depuis le OrderRepo
         $orderRepository = new OrderRepository();
         $order = $orderRepository->findOrder();
-
+//        2- je vérifie que ma requete post a bien été faite
         if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
             if (key_exists('shippingAdress', $_POST)) {
                 try {
+                    //je définie ma shipping adress en lui donnant la valeur entré dans le form
                     $order->setShippingAdress(($_POST["shippingAdress"]));
-
+                    // je stocke la nouvelle instance de mon repo
                     $orderRepository = new OrderRepository();
                     $orderRepository->persistOrder($order);
 
